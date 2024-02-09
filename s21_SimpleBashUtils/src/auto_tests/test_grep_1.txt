@@ -1,0 +1,31 @@
+#include "s21_grep.h"
+void option_e(char *line, char *temp, char *filename[], int n, int comp_counter,
+  if ((regexec(&re_temp, line, 0, NULL, 0) == 0) && file_count == 1) {
+  } else if ((regexec(&re_temp, line, 0, NULL, 0) == 0) && file_count > 1 &&
+    printf("%s:%s", filename[n], line);
+void option_i(char *line, char *temp, char *filename[], int n, int comp_counter,
+  if ((regexec(&re_temp, line, 0, NULL, 0) == 0) && file_count == 1) {
+  } else if ((regexec(&re_temp, line, 0, NULL, 0) == 0) && file_count > 1 &&
+    printf("%s:%s", filename[n], line);
+void option_v(char *line, char *temp, char *filename[], int n, int comp_counter,
+  if ((regexec(&re_temp, line, 0, NULL, 0) != 0) && file_count == 1) {
+  } else if ((regexec(&re_temp, line, 0, NULL, 0) != 0) && file_count > 1 &&
+    printf("%s:%s", filename[n], line);
+void option_n(char *line, char *temp, int str_count, char *filename[], int n,
+  if ((regexec(&re_temp, line, 0, NULL, 0) == 0) && file_count == 1) {
+  } else if ((regexec(&re_temp, line, 0, NULL, 0) == 0) && file_count > 1 &&
+    printf("%s:%d:%s", filename[n], str_count, line);
+        option->def = 1;
+                  int comp_counter, char *filename[], int n, int file_count) {
+    option_e(line, temp, filename, n, comp_counter, file_count);
+    option_i(line, temp, filename, n, comp_counter, file_count);
+    option_v(line, temp, filename, n, comp_counter, file_count);
+    option_n(line, temp, str_count, filename, n, comp_counter, file_count);
+    option_h(line, temp);
+void open_file(char *filename[], flags *option, int n, int file_count) {
+  if (filename[n] != NULL) {
+    file = fopen(filename[n], "r");
+    comp_counter = flags_realise(line, option, filename[2], str_count,
+                                 comp_counter, filename, n, file_count);
+  if (option->l && comp_counter > 0) printf("%s\n", filename[n]);
+    printf("%s.%d\n", filename[n], comp_counter);
